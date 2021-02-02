@@ -5,6 +5,8 @@
 	<modules>
 		<module>member</module>
 		<module>common</module>
+		<module>post</module>
+		<module>web</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
