@@ -10,9 +10,12 @@ import com.zoo.post.entity.Post;
 import com.zoo.post.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 @RequestMapping("/post")
 @RestController
@@ -27,7 +30,7 @@ public class PostController {
 
     @NeedLogin
     @PostMapping
-    public ResponseEntity<Response> store(Post post) {
+    public ResponseEntity<Response> store(@Validated({Post.Store.class}) Post post) {
         post.setMemberId(LoginMember.getId());
         postService.save(post);
         LOGGER.info("新增文章", "requestId", WebLogInterceptor.getRequestId());

@@ -6,6 +6,9 @@
 		<module>common</module>
 		<module>post</module>
 		<module>web</module>
+		<module>information</module>
+		<module>member</module>
+		<module>member</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
