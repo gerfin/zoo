@@ -1,15 +1,16 @@
-package com.zoo.member.service;
+package com.zoo.common.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.structlog4j.ILogger;
 import com.github.structlog4j.SLoggerFactory;
 import com.zoo.common.config.WebLogInterceptor;
+import com.zoo.common.entity.LoginMember;
+import com.zoo.common.entity.Member;
 import com.zoo.common.util.CryptoUtil;
 import com.zoo.common.util.RedisUtil;
-import com.zoo.member.entity.Member;
-import com.zoo.member.exception.MemberCustomExceptionEnum;
-import com.zoo.member.repository.MemberRepository;
+import com.zoo.common.exception.MemberCustomExceptionEnum;
+import com.zoo.common.repository.MemberRepository;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,17 +20,15 @@ import java.util.UUID;
 
 @Service
 public class AuthService {
-    @Value("${member.passwordEncodeSalt:salt12345678}")
+    @Value("${common.passwordEncodeSalt:salt12345678}")
     private String passwordEncodeSalt;
-    @Value("${member.tokenExpireSecond:604800}")
+    @Value("${common.tokenExpireSecond:604800}")
     private Integer tokenExpireSecond;
 
     private final MemberRepository memberRepository;
     private static RedisUtil redisUtil;
 
     private final static ILogger LOGGER = SLoggerFactory.getLogger(AuthService.class);
-
-    private static final ThreadLocal<Member> memberThreadLocal = new ThreadLocal<>();
 
     @Autowired
     public AuthService(MemberRepository memberRepository, RedisUtil redisUtil) {
@@ -64,7 +63,7 @@ public class AuthService {
         }
 
         generateToken(memberLogin);
-        setMemberThreadLocal(memberLogin);
+        LoginMember.setMemberThreadLocal(memberLogin);
         return memberRepository.save(memberLogin);
     }
 
@@ -134,21 +133,6 @@ public class AuthService {
         return null;
     }
 
-    /**
-     * 在request线程中保存用户信息
-     * @param member 用户信息
-     */
-    private static void setMemberThreadLocal(Member member) {
-        LOGGER.info("request存入用户信息", "requestId", WebLogInterceptor.getRequestId(), "member", member);
-        memberThreadLocal.set(member);
-    }
 
-    /**
-     * 获取当前request的登录用户信息
-     * @return 当前登录用户信息
-     */
-    public static Member getLoginMember() {
-        return memberThreadLocal.get();
-    }
 
 }

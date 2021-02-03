@@ -12,6 +12,11 @@
     <artifactId>post</artifactId>
 
     <dependencies>
+        <dependency>
+            <groupId>com.zoo</groupId>
+            <artifactId>common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter -->
         <dependency>
             <groupId>com.baomidou</groupId>

@@ -1,4 +1,4 @@
-package com.zoo.member.entity;
+package com.zoo.common.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;

@@ -10,5 +10,11 @@ spring:
   redis:
     host: 127.0.0.1
 
-member:
+common:
   passwordEncodeSalt: 2f021bd94387
+  tokenExpireSecond: 604800
+  loginFilterPathList:
+    - /**
+  loginFilterExcludePathList:
+    - /member/**
+

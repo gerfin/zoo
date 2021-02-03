@@ -1,8 +1,8 @@
-package com.zoo.member.controller;
+package com.zoo.common.controller;
 
+import com.zoo.common.entity.Member;
 import com.zoo.common.entity.Response;
-import com.zoo.member.entity.Member;
-import com.zoo.member.service.AuthService;
+import com.zoo.common.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

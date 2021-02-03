@@ -19,7 +19,7 @@
         </dependency>
         <dependency>
             <groupId>com.zoo</groupId>
-            <artifactId>member</artifactId>
+            <artifactId>post</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

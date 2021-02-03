@@ -1,6 +1,6 @@
-package com.zoo.member.repository;
+package com.zoo.common.repository;
 
-import com.zoo.member.entity.Member;
+import com.zoo.common.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
