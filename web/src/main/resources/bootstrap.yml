@@ -1,7 +1,0 @@
-common:
-  passwordEncodeSalt: 2f021bd94387
-  tokenExpireSecond: 604800
-  loginFilterPathList:
-    - /**
-  loginFilterExcludePathList:
-    - /member/**
